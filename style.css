@@ -15,7 +15,7 @@ html,body{ margin:0; padding:0; }
 body{
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
   color: var(--fg);
-  background: var(--bg);
+  background: transparent;
   line-height: 1.55;
 }
 
@@ -82,23 +82,36 @@ h3{ font-size: 18px; }
 .btn--small{ padding: 9px 12px; border-radius: 12px; font-size: 13px; }
 .btn--wide{ width: 100%; }
 
-.bg-video{
+.bg-wrap{
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -3;
-  filter: saturate(1.05) contrast(1.05);
+  z-index: 0;          /* 배경 레이어는 0 */
+  overflow: hidden;
 }
-.bg-overlay{
-  position: fixed;
+
+.bg-video{
+  position: absolute;
   inset: 0;
-  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bg-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;          /* 오버레이는 1 */
+  pointer-events: none;
   background:
     radial-gradient(700px 500px at 20% 20%, rgba(120,180,255,0.22), transparent 60%),
     radial-gradient(700px 500px at 80% 30%, rgba(210,140,255,0.18), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.30), rgba(0,0,0,0.62));
+    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+}
+
+/* 네비/본문을 배경 위로(2 이상) */
+.nav, main{
+  position: relative;
+  z-index: 2;
 }
 
 /* NAV */
@@ -363,3 +376,4 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
   .nav__mobile{ display:flex; }
   .nav__mobile[aria-hidden="true"]{ display:none; }
 }
+
