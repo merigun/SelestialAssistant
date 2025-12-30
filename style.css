@@ -15,7 +15,7 @@ html,body{ margin:0; padding:0; }
 body{
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
   color: var(--fg);
-  background: transparent;
+  background: var(--bg);
   line-height: 1.55;
 }
 
@@ -441,6 +441,7 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
   border-top: 1px solid rgba(255,255,255,0.03);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
+
 
 
 
