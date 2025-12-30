@@ -103,9 +103,13 @@ h3{ font-size: 18px; }
   z-index: 1;          /* 오버레이는 1 */
   pointer-events: none;
   background:
-    radial-gradient(700px 500px at 20% 20%, rgba(120,180,255,0.22), transparent 60%),
-    radial-gradient(700px 500px at 80% 30%, rgba(210,140,255,0.18), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.25) 40%,
+      rgba(0,0,0,0.25) 60%,
+      rgba(0,0,0,0.7)
+    );
 }
 
 /* 네비/본문을 배경 위로(2 이상) */
@@ -376,4 +380,5 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
   .nav__mobile{ display:flex; }
   .nav__mobile[aria-hidden="true"]{ display:none; }
 }
+
 
