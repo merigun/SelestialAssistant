@@ -411,14 +411,13 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
 /* 두 번째 페이지: 정적 배경 */
 .bg-dark{
   background:
-    transparent;
-    /* radial-gradient(1200px 600px at 20% 10%, #14182f, #070914); */
+    radial-gradient(1200px 600px at 20% 10%, #14182f, #070914);
 }
 
 /* 영상은 메인 페이지에서만 */
-/* .bg-dark .bg-wrap{
+.bg-dark .bg-wrap{
   display: none;
-}*/
+}
 
 .page-fade{
   opacity: 0;
@@ -442,6 +441,7 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
   border-top: 1px solid rgba(255,255,255,0.03);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
+
 
 
 
