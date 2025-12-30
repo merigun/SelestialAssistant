@@ -105,7 +105,7 @@ h3{ font-size: 18px; }
   background:
     linear-gradient(
       180deg,
-      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.8),
       rgba(0,0,0,0.25) 40%,
       rgba(0,0,0,0.25) 60%,
       rgba(0,0,0,0.7)
@@ -124,7 +124,7 @@ h3{ font-size: 18px; }
   top: 0;
   z-index: 50;
   backdrop-filter: blur(14px);
-  background: rgba(7,9,20,0.55);
+  background: rgba(7,9,20,0.65);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .nav__inner{
@@ -380,5 +380,6 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
   .nav__mobile{ display:flex; }
   .nav__mobile[aria-hidden="true"]{ display:none; }
 }
+
 
 
