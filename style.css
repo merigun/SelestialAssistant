@@ -157,6 +157,20 @@ h3{ font-size: 18px; }
   padding: 8px 10px;
   border-radius: 10px;
 }
+
+/* NAV active */
+.nav__links a.is-active,
+.nav__mobile a.is-active{
+  background: rgba(130,200,255,0.16);
+  border: 1px solid rgba(130,200,255,0.28);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* '문의' 버튼도 active 될 수 있게 */
+.nav__links .btn.is-active{
+  background: rgba(130,200,255,0.20);
+  border-color: rgba(130,200,255,0.35);
+}
 /* 공통 카드/패널 */
 .glass,
 .card,
@@ -419,6 +433,13 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* index(bg-space)에서 제품 섹션은 영상이 보이도록 배경을 약하게 */
+.bg-space #product.section--alt{
+  background: rgba(7,9,20,0.35);     /* 너무 진하면 영상 죽음 */
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 
