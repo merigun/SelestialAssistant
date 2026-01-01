@@ -4,25 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Celestial Assistant — Pricing & Company</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="가격, 협업 구조, 회사/로드맵" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="bg-dark page-fade">
   <!-- NAV -->
   <header class="nav">
     <div class="nav__inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html#home" aria-label="Home">
         <span class="brand__dot"></span>
         <span class="brand__name">Celestial Assistant</span>
       </a>
 
-      <nav class="nav__links">
-        <a href="index.html#product">제품</a>
-        <a href="pricing.html#pricing">가격</a>
-        <a href="pricing.html#partners">협업</a>
-        <a href="pricing.html#company">회사</a>
-        <a class="btn btn--small" href="index.html#contact">문의</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a data-spy href="index.html#product">제품</a>
+        <a data-spy href="pricing.html#pricing">가격</a>
+        <a data-spy href="pricing.html#partners">협업</a>
+        <a data-spy href="pricing.html#company">회사</a>
+        <a data-spy class="btn btn--small" href="index.html#contact">문의</a>
       </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile" id="navMobile" aria-hidden="true">
+      <a data-spy href="index.html#product">제품</a>
+      <a data-spy href="pricing.html#pricing">가격</a>
+      <a data-spy href="pricing.html#partners">협업</a>
+      <a data-spy href="pricing.html#company">회사</a>
+      <a data-spy href="index.html#contact">문의</a>
     </div>
   </header>
 
@@ -30,19 +43,62 @@
     <!-- PRICING -->
     <section id="pricing" class="section">
       <div class="container">
-        <h2>가격 (발표용)</h2>
+        <h2>가격 (발표용 예시)</h2>
+        <p class="lead">발표에서는 “예상가/구독 모델”로 제시하는 게 안전합니다.</p>
+
         <div class="pricing">
           <div class="price-card">
             <h3>Mini</h3>
-            <p class="price">₩199,000</p>
+            <p class="price">₩199,000<span>/ 예상가</span></p>
+            <p class="muted">교육기관 대량 도입 할인</p>
+            <a class="btn btn--small btn--wide" href="index.html#contact">도입 문의</a>
           </div>
+
           <div class="price-card price-card--featured">
+            <div class="badge">Popular</div>
             <h3>Standard</h3>
-            <p class="price">₩899,000</p>
+            <p class="price">₩899,000<span>/ 예상가</span></p>
+            <p class="muted">취미·캠핑 최적</p>
+            <a class="btn btn--small btn--wide" href="index.html#contact">데모 요청</a>
           </div>
+
           <div class="price-card">
             <h3>Premium</h3>
-            <p class="price">₩4,990,000</p>
+            <p class="price">₩4,990,000<span>/ 예상가</span></p>
+            <p class="muted">연구·프로 시장</p>
+            <a class="btn btn--small btn--wide" href="index.html#contact">B2B 문의</a>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <h3>Star-Pass (구독 예시)</h3>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <div class="mini-card__k">Basic</div>
+              <div class="mini-card__v">월 ₩4,900</div>
+              <div class="mini-card__d">실시간 상호작용 가이드</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card__k">Premium</div>
+              <div class="mini-card__v">월 ₩19,900</div>
+              <div class="mini-card__d">고화질 처리·우선권</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card__k">B2B</div>
+              <div class="mini-card__v">협의</div>
+              <div class="mini-card__d">데이터 솔루션/연구</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional: show one more catalog image -->
+        <div class="sub-section">
+          <h3>Premium Concept (설계 근거)</h3>
+          <div class="gallery">
+            <figure class="shot">
+              <img src="./assets/img/ca-s1-premium-exploded.png" alt="CA-S1 Premium concept render and exploded view" loading="lazy" />
+              <figcaption>CA-S1 Premium — Render / Exploded View / BOM</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -52,73 +108,105 @@
     <section id="partners" class="section section--alt">
       <div class="container">
         <h2>협업 구조</h2>
+        <p class="lead">
+          “글로벌 빅테크 간 Win-Win 구조”를 전제로 한 단계적 파트너십.
+        </p>
+
         <div class="cards cards--2">
           <article class="card">
-            <h3>Starlink</h3>
-            <p>오지 통신</p>
+            <div class="card__top">
+              <h3>Starlink (통신)</h3>
+              <p class="tag">오지 연결성</p>
+            </div>
+            <p class="card__body">
+              저대역폭 환경에서도 관측 경험이 끊기지 않도록 통신 안정성을 확보합니다.
+            </p>
+            <ul class="bullets">
+              <li>오지/캠핑 환경 지원</li>
+              <li>원격 업데이트/전송</li>
+            </ul>
           </article>
+
           <article class="card">
-            <h3>Gemini</h3>
-            <p>천체 해설 AI</p>
+            <div class="card__top">
+              <h3>Gemini (멀티모달)</h3>
+              <p class="tag">해설/도슨트</p>
+            </div>
+            <p class="card__body">
+              사용자의 관측 경험을 “이해”로 연결하는 대화형 해설을 제공합니다.
+            </p>
+            <ul class="bullets">
+              <li>천문 특화 가이드</li>
+              <li>교육·취미 사용성 강화</li>
+            </ul>
           </article>
         </div>
       </div>
     </section>
 
     <!-- COMPANY -->
-<section id="company" class="section">
-  <div class="container">
-    <h2>회사 소개</h2>
-    <p class="lead">
-      우주경제는 성장하지만, 망원경 시장은 정체. 이유는 “사용 난이도”와 “실감 부족”.
-    </p>
+    <section id="company" class="section">
+      <div class="container">
+        <h2>회사 소개</h2>
+        <p class="lead">
+          우주경제는 성장하지만, 망원경 시장은 정체. 이유는 “사용 난이도”와 “실감 부족”.
+        </p>
 
-    <div class="timeline">
-      <div class="step">
-        <div class="step__n">1</div>
-        <div class="step__c">
-          <h3>문제 정의</h3>
-          <p>초보자도 “실제 관측”을 할 수 있어야 합니다.</p>
+        <div class="timeline">
+          <div class="step">
+            <div class="step__n">1</div>
+            <div class="step__c">
+              <h3>문제 정의</h3>
+              <p>초보자도 “실제 관측”을 할 수 있어야 합니다.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__n">2</div>
+            <div class="step__c">
+              <h3>제품 설계</h3>
+              <p>Mini/Standard/Premium으로 시장별 진입.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__n">3</div>
+            <div class="step__c">
+              <h3>구독 모델</h3>
+              <p>Star-Pass로 지속 가능한 수익 구조.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__n">4</div>
+            <div class="step__c">
+              <h3>데이터 솔루션</h3>
+              <p>광공해/기상/관측 데이터 활용.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__n">5</div>
+            <div class="step__c">
+              <h3>과학문화 확장</h3>
+              <p>대중적 지지 없이는 우주 개척은 지속될 수 없습니다.</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="step">
-        <div class="step__n">2</div>
-        <div class="step__c">
-          <h3>제품 설계</h3>
-          <p>Mini/Standard/Premium으로 시장별 진입.</p>
+        <div class="sub-section">
+          <h3>Optical Cutaway (발표용)</h3>
+          <div class="gallery">
+            <figure class="shot">
+              <img src="./assets/img/astro-kit-cutaway.png" alt="Optical cutaway / section view" loading="lazy" />
+              <figcaption>Optical Path / Cutaway — 이해 가능한 설계 근거</figcaption>
+            </figure>
+          </div>
         </div>
-      </div>
 
-      <div class="step">
-        <div class="step__n">3</div>
-        <div class="step__c">
-          <h3>구독 모델</h3>
-          <p>Star-Pass로 지속 가능한 수익 구조.</p>
-        </div>
+        <footer class="footer">
+          <span>© <span id="year"></span> Celestial Assistant. All rights reserved.</span>
+        </footer>
       </div>
-
-      <div class="step">
-        <div class="step__n">4</div>
-        <div class="step__c">
-          <h3>데이터 솔루션</h3>
-          <p>광공해/기상/관측 데이터 활용.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step__n">5</div>
-        <div class="step__c">
-          <h3>과학문화 확장</h3>
-          <p>대중적 지지 없이는 우주 개척은 지속될 수 없습니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
-
