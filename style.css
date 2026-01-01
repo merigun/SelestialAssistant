@@ -549,6 +549,14 @@ details,
   border-radius:14px;
 }
 
+/* pricing 페이지에서 섹션 가독성(전체 톤 통일) */
+.bg-space .section{
+  background: rgba(7,9,20,0.18);   /* 전체 섹션 얇게 어둡게 */
+}
+
+.bg-space .section.section--alt{
+  background: rgba(7,9,20,0.28);   /* alt는 살짝 더 */
+}
 
 
 
