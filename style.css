@@ -530,6 +530,34 @@ details,
   to{ opacity: 1; transform: translateY(0); }
 }
 
+/* 제품 이미지 */
+.product-visual{
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+.product-visual img{
+  width:100%;
+  border-radius:18px;
+  background:#0b0e1c;
+  padding:12px;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+/* 설계도 */
+.blueprint-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.blueprint-grid img{
+  width:100%;
+  background:#fff;
+  padding:14px;
+  border-radius:14px;
+}
 
 
 
