@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Celestial Assistant — Find Your Star</title>
   <meta name="description" content="Viewing to Knowing. 밤하늘을 경험으로 바꾸는 천체 관측 도우미." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="bg-space page-fade">
-  <!-- Background (video only for index) -->
+  <!-- Background (video) -->
   <div class="bg-wrap" aria-hidden="true">
     <video class="bg-video" autoplay muted loop playsinline preload="auto">
       <source src="./assets/video/space.mp4" type="video/mp4" />
@@ -20,30 +20,30 @@
   <!-- NAV -->
   <header class="nav">
     <div class="nav__inner">
-      <a class="brand" href="index.html#home">
+      <a class="brand" href="index.html#home" aria-label="Home">
         <span class="brand__dot"></span>
         <span class="brand__name">Celestial Assistant</span>
       </a>
 
-      <nav class="nav__links">
-        <a href="index.html#product">제품</a>
-        <a href="pricing.html#pricing">가격</a>
-        <a href="pricing.html#partners">협업</a>
-        <a href="pricing.html#company">회사</a>
-        <a class="btn btn--small" href="index.html#contact">문의</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a data-spy href="index.html#product">제품</a>
+        <a data-spy href="pricing.html#pricing">가격</a>
+        <a data-spy href="pricing.html#partners">협업</a>
+        <a data-spy href="pricing.html#company">회사</a>
+        <a data-spy class="btn btn--small" href="index.html#contact">문의</a>
       </nav>
 
-      <button class="nav__toggle" id="navToggle" aria-expanded="false">
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
 
     <div class="nav__mobile" id="navMobile" aria-hidden="true">
-      <a href="index.html#product">제품</a>
-      <a href="pricing.html#pricing">가격</a>
-      <a href="pricing.html#partners">협업</a>
-      <a href="pricing.html#company">회사</a>
-      <a href="index.html#contact">문의</a>
+      <a data-spy href="index.html#product">제품</a>
+      <a data-spy href="pricing.html#pricing">가격</a>
+      <a data-spy href="pricing.html#partners">협업</a>
+      <a data-spy href="pricing.html#company">회사</a>
+      <a data-spy href="index.html#contact">문의</a>
     </div>
   </header>
 
@@ -60,21 +60,41 @@
             망원경은 어렵고, 앱은 가볍습니다.<br />
             우리는 “관측”과 “이해”의 간극을 메웁니다.
           </p>
+
           <div class="hero__cta">
             <a class="btn" href="pricing.html#pricing">제품 라인업 보기</a>
-            <a class="btn btn--ghost" href="pricing.html#partners">협업 구조</a>
+            <a class="btn btn--ghost" href="pricing.html#partners">협업 구조 보기</a>
+          </div>
+
+          <div class="hero__meta">
+            <div class="meta-card">
+              <div class="meta-card__k">캠페인</div>
+              <div class="meta-card__v">Find Your Star</div>
+            </div>
+            <div class="meta-card">
+              <div class="meta-card__k">타겟</div>
+              <div class="meta-card__v">Edu · Hobby · Pro</div>
+            </div>
+            <div class="meta-card">
+              <div class="meta-card__k">핵심</div>
+              <div class="meta-card__v">경험 중심 과학문화</div>
+            </div>
           </div>
         </div>
 
         <div class="hero__panel">
           <div class="glass">
             <h3>한 줄 가치 제안</h3>
-            <p>“밤하늘을 보는 행위”를 이해의 경험으로 바꿉니다.</p>
+            <p>
+              “밤하늘을 보는 행위”를<br />
+              “이해와 대화의 경험”으로 바꿉니다.
+            </p>
             <ul class="list">
               <li>초보자 진입장벽 ↓</li>
               <li>관측 몰입도 ↑</li>
               <li>교육·연구 데이터 가치 ↑</li>
             </ul>
+            <a class="btn btn--small btn--wide" href="index.html#contact">데모/발표 자료 요청</a>
           </div>
         </div>
       </div>
@@ -84,21 +104,95 @@
     <section id="product" class="section section--alt">
       <div class="container">
         <h2>제품 컨셉</h2>
-        <p class="lead">망원경이 아닌, <span class="em">경험 중심 과학문화</span>.</p>
+        <p class="lead">
+          “망원경 판매”가 아닌, <span class="em">경험 중심 과학문화</span>를 만듭니다.
+        </p>
 
         <div class="cards cards--3">
           <article class="card">
-            <h3>Mini</h3>
-            <p>교육용·보급형</p>
+            <div class="card__top">
+              <h3>Mini</h3>
+              <p class="tag">Edu</p>
+            </div>
+            <p class="card__body">
+              “무엇을 보고 있는지 몰라 흥미가 꺼지는 문제”를<br />
+              실시간 식별·설명으로 해결합니다.
+            </p>
+            <ul class="bullets">
+              <li>교육기관/초·중학생</li>
+              <li>접근성 최우선</li>
+              <li>체험형 과학 학습</li>
+            </ul>
           </article>
+
           <article class="card">
-            <h3>Standard</h3>
-            <p>취미·캠핑</p>
+            <div class="card__top">
+              <h3>Standard</h3>
+              <p class="tag">Hobby</p>
+            </div>
+            <p class="card__body">
+              “정렬·추적 실패로 포기하는 문제”를<br />
+              자동 정렬·가이드로 제거합니다.
+            </p>
+            <ul class="bullets">
+              <li>캠핑족/2030 커플</li>
+              <li>원터치 공유</li>
+              <li>관측 “도감” 수집</li>
+            </ul>
           </article>
+
           <article class="card">
-            <h3>Premium</h3>
-            <p>연구·전문</p>
+            <div class="card__top">
+              <h3>Premium</h3>
+              <p class="tag">Pro</p>
+            </div>
+            <p class="card__body">
+              “반복 공수·후처리 부담”을<br />
+              데이터 파이프라인으로 줄입니다.
+            </p>
+            <ul class="bullets">
+              <li>천체 사진가/연구실</li>
+              <li>분석에 집중</li>
+              <li>고화질·전송 최적화</li>
+            </ul>
           </article>
+        </div>
+
+        <!-- NEW: How it works -->
+        <div class="sub-section">
+          <h3>How it works</h3>
+          <p class="lead">Capture → Understand → Record</p>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <div class="mini-card__k">Capture</div>
+              <div class="mini-card__v">관측</div>
+              <div class="mini-card__d">광학/센서로 천체 데이터를 확보</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card__k">Understand</div>
+              <div class="mini-card__v">이해</div>
+              <div class="mini-card__d">대화형 도슨트로 ‘왜/무엇’ 설명</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card__k">Record</div>
+              <div class="mini-card__v">기록</div>
+              <div class="mini-card__d">세션 리포트/공유로 경험을 남김</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW: Catalog Gallery (1~2장만) -->
+        <div class="sub-section">
+          <h3>Concept Renders (발표용)</h3>
+          <p class="lead">설계 기반의 렌더/단면도는 ‘컨셉이 아닌 제품’이라는 신뢰를 만듭니다.</p>
+
+          <div class="gallery">
+            <figure class="shot">
+              <img src="./assets/img/ca-m1-clipscope-v2.png" alt="CA-M1 ClipScope render and exploded view" loading="lazy" />
+              <figcaption>CA-M1 ClipScope V2 — Render / Exploded View / Cutaway</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -107,24 +201,35 @@
     <section id="contact" class="section">
       <div class="container">
         <h2>문의</h2>
-        <p class="lead">서버 없이 이메일로 충분합니다.</p>
+        <p class="lead">서버 없이도 가능한 방식: 이메일 버튼만으로 충분합니다.</p>
 
         <div class="contact">
           <div class="contact__card">
             <h3>Demo / Partnership</h3>
-            <a class="btn btn--wide" href="mailto:celestial.assistant.team@example.com">
-              이메일 문의
+            <p class="muted">발표용 데모 요청 또는 협업 논의</p>
+            <a class="btn btn--wide" href="mailto:celestial.assistant.team@example.com?subject=Celestial%20Assistant%20Inquiry">
+              이메일로 문의하기
             </a>
+            <p class="tiny">* 예시 이메일입니다. 팀 메일로 바꾸세요.</p>
+          </div>
+
+          <div class="contact__card">
+            <h3>Quick Links</h3>
+            <ul class="list">
+              <li><a href="pricing.html#pricing">가격</a></li>
+              <li><a href="pricing.html#partners">협업</a></li>
+              <li><a href="pricing.html#company">회사</a></li>
+            </ul>
           </div>
         </div>
 
         <footer class="footer">
-          <span>© <span id="year"></span> Celestial Assistant</span>
+          <span>© <span id="year"></span> Celestial Assistant. All rights reserved.</span>
         </footer>
       </div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
