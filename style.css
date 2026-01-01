@@ -558,7 +558,15 @@ details,
   background: rgba(7,9,20,0.28);   /* alt는 살짝 더 */
 }
 
-
+.bg-video{
+  object-fit: cover;
+  object-position: center top; /* 또는 center center */
+}
+@media (max-width: 760px){
+  .bg-video{
+    object-position: center 20%; /* 위쪽 20% 지점 기준 */
+  }
+}
 
 
 
