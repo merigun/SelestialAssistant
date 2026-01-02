@@ -568,5 +568,37 @@ details,
   }
 }
 
+/* 카드 hover: 살짝 부풀고 떠오르는 효과 */
+.card{
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  transform: translateZ(0); /* 렌더 안정화 */
+}
+
+.card:hover{
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(130,200,255,0.32);
+  box-shadow: 0 26px 70px rgba(0,0,0,0.55);
+}
+
+/* 키보드 접근성(탭 이동 시에도 강조) */
+.card:focus-within{
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(130,200,255,0.32);
+  box-shadow: 0 26px 70px rgba(0,0,0,0.55);
+}
+
+/* 모션 싫어하는 사용자 설정 존중 */
+@media (prefers-reduced-motion: reduce){
+  .card{ transition: none; }
+  .card:hover, .card:focus-within{ transform: none; }
+}
+
+.card .shot img{
+  transition: transform 240ms ease;
+}
+.card:hover .shot img{
+  transform: scale(1.03);
+}
+
 
 
