@@ -124,6 +124,68 @@ if (y) y.textContent = String(new Date().getFullYear());
     if(!svgDoc) return;
 
     const svg = svgDoc.querySelector("svg");
+    ensureSvgPinStyles(svgDoc);
+    // ✅ SVG 내부에 핀 스타일 주입 (style.css는 <object> 내부 SVG엔 적용 안 됨)
+    function ensureSvgPinStyles(svgDoc) {
+      if (svgDoc.getElementById("pinStyles")) return;
+    
+      const style = svgDoc.createElementNS("http://www.w3.org/2000/svg", "style");
+      style.setAttribute("id", "pinStyles");
+      style.textContent = `
+        :root{
+          --t0:#ff4d4d; /* 🔴 */
+          --t1:#ff9f2e; /* 🟠 */
+          --t2:#ffd84d; /* 🟡 */
+          --t3:#67a8ff; /* 🔵 */
+        }
+    
+        .pin-dot{
+          stroke: rgba(255,255,255,0.20);
+          stroke-width: 1;
+        }
+    
+        .pin-glow{
+          fill: none;
+          stroke-width: 2;
+          opacity: 0.55;
+          /* SVG에서 transform 애니메이션 안정화 */
+          transform-box: fill-box;
+          transform-origin: center;
+          filter: drop-shadow(0 0 10px rgba(120,180,255,0.35));
+          animation: pinPulse 1.7s ease-in-out infinite;
+        }
+    
+        @keyframes pinPulse{
+          0%   { transform: scale(0.95); opacity: 0.35; }
+          50%  { transform: scale(1.10); opacity: 0.70; }
+          100% { transform: scale(0.95); opacity: 0.35; }
+        }
+    
+        /* tier apply */
+        .pin.t0 .pin-dot{ fill: var(--t0); }
+        .pin.t0 .pin-glow{ stroke: var(--t0); }
+    
+        .pin.t1 .pin-dot{ fill: var(--t1); }
+        .pin.t1 .pin-glow{ stroke: var(--t1); }
+    
+        .pin.t2 .pin-dot{ fill: var(--t2); }
+        .pin.t2 .pin-glow{ stroke: var(--t2); }
+    
+        .pin.t3 .pin-dot{ fill: var(--t3); }
+        .pin.t3 .pin-glow{ stroke: var(--t3); }
+    
+        /* hover */
+        .pin:hover .pin-dot{
+          stroke: rgba(255,255,255,0.45);
+          stroke-width: 1.2;
+        }
+      `;
+    
+      // svg 최상단에 style 넣기
+      const svg = svgDoc.querySelector("svg");
+      svg.insertBefore(style, svg.firstChild);
+    }
+
     if(!svg) return;
 
     // world.svg에서 geoViewBox 읽기 (lon/lat bounds)
@@ -220,6 +282,7 @@ if (y) y.textContent = String(new Date().getFullYear());
     svg.addEventListener("click", hideTip);
   });
 })();
+
 
 
 
