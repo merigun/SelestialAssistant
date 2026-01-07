@@ -662,3 +662,31 @@ details,
   100% { transform: scale(1.0); opacity: 0; }
 }
 
+.map-wrap{ position: relative; }
+.map-pins{ position:absolute; inset:0; pointer-events:none; }
+
+.pin{
+  pointer-events:auto;
+  position:absolute;
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(130,200,255,0.85);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 22px rgba(130,200,255,0.35);
+  animation: pinPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pinPulse{
+  0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.95; }
+  50%     { transform: translate(-50%, -50%) scale(1.35); opacity: 0.75; }
+}
+
+/* 티어별 크기 차이(색은 크게 안 건드리고 '존재감'으로 구분) */
+.pin--TOP{ width: 14px; height: 14px; box-shadow: 0 0 28px rgba(203,140,255,0.45); }
+.pin--A  { width: 12px; height: 12px; }
+.pin--B  { width: 11px; height: 11px; opacity: 0.95; }
+.pin--C  { width: 10px; height: 10px; opacity: 0.85; }
+.pin--ASIA{ width: 11px; height: 11px; box-shadow: 0 0 22px rgba(130,200,255,0.35); }
+.pin--KR { width: 12px; height: 12px; box-shadow: 0 0 26px rgba(255,255,255,0.25); }
+
