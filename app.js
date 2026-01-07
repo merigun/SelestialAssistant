@@ -59,48 +59,49 @@ if (y) y.textContent = String(new Date().getFullYear());
   onScroll();
 })();
 
-// ===== Map tooltip for pins =====
-(function () {
-  const tip = document.getElementById("mapTip");
-  const pins = document.querySelectorAll(".pin");
-  if (!tip || !pins.length) return;
+// ===============================
+// Map pins (percent-based)
+// ===============================
+(function(){
+  const pinsRoot = document.getElementById("mapPins");
+  const mapWrap  = document.getElementById("mapWrap");
+  if(!pinsRoot || !mapWrap) return;
 
-  function showTip(el, clientX, clientY) {
-    const name = el.getAttribute("data-name") || "";
-    tip.textContent = name;
-    tip.classList.add("is-on");
-    tip.setAttribute("aria-hidden", "false");
+  // x,y는 "퍼센트 좌표" (0~100). 화면 크기 바뀌어도 동일하게 맞음.
+  const SPOTS = [
+    { name: "Atacama Desert", x: 23.5, y: 73.0 },
+    { name: "Mauna Kea",      x: 16.5, y: 53.5 },
+    { name: "La Palma",       x: 44.0, y: 41.5 },
+    { name: "Namib Desert",   x: 55.0, y: 78.0 },
+    // 필요하면 계속 추가
+  ];
 
-    const wrap = el.parentElement.getBoundingClientRect();
-    // 툴팁 위치: 커서 기준
-    const x = clientX - wrap.left + 12;
-    const y = clientY - wrap.top + 12;
-    tip.style.left = `${x}px`;
-    tip.style.top = `${y}px`;
+  function renderPins(){
+    pinsRoot.innerHTML = "";
+    for(const s of SPOTS){
+      const pin = document.createElement("div");
+      pin.className = "pin";
+      pin.style.setProperty("--x", s.x + "%");
+      pin.style.setProperty("--y", s.y + "%");
+      pin.innerHTML = `<span class="tip">${s.name}</span>`;
+      pinsRoot.appendChild(pin);
+    }
   }
 
-  function hideTip() {
-    tip.classList.remove("is-on");
-    tip.setAttribute("aria-hidden", "true");
-  }
+  renderPins();
 
-  pins.forEach(p => {
-    p.addEventListener("mouseenter", (e) => showTip(p, e.clientX, e.clientY));
-    p.addEventListener("mousemove", (e) => showTip(p, e.clientX, e.clientY));
-    p.addEventListener("mouseleave", hideTip);
-
-    // 모바일: 탭하면 보이게(한번 더 탭하면 닫기)
-    p.addEventListener("click", (e) => {
-      e.preventDefault();
-      const on = tip.classList.contains("is-on");
-      if (on) hideTip();
-      else showTip(p, e.clientX || 0, e.clientY || 0);
+  // ===============================
+  // 좌표 찍기 모드(개발할 때만 사용)
+  // 지도 클릭하면 {x,y} 퍼센트가 콘솔에 찍힘
+  // ===============================
+  const DEBUG_PICK = true; // 다 찍었으면 false로 바꿔
+  if(DEBUG_PICK){
+    mapWrap.addEventListener("click", (e) => {
+      const rect = mapWrap.getBoundingClientRect();
+      const px = ( (e.clientX - rect.left) / rect.width ) * 100;
+      const py = ( (e.clientY - rect.top)  / rect.height) * 100;
+      console.log("PIN %:", { x: +px.toFixed(2), y: +py.toFixed(2) });
     });
-  });
-
-  // 바깥 클릭하면 닫기(모바일)
-  document.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("pin")) hideTip();
-  });
+  }
 })();
 
