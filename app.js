@@ -70,10 +70,10 @@ if (y) y.textContent = String(new Date().getFullYear());
   if (!wrap || !pinsEl) return;
 
   const TIERS = {
-    TOP: { label: "TOP TIER" },
-    A: { label: "1군" },
-    B: { label: "2군" },
-    C: { label: "3군" },
+    TOP: { label: "TIER 0" },
+    A: { label: "TIER 1" },
+    B: { label: "TIER 2" },
+    C: { label: "TIER 3" },
     ASIA: { label: "아시아" },
     KR: { label: "한국" },
   };
@@ -195,3 +195,4 @@ if (y) y.textContent = String(new Date().getFullYear());
   // (옵션) 콘솔에 몇 개 찍혔는지
   console.log(`[Map] Pins rendered: ${SPOTS.length}`);
 })();
+
