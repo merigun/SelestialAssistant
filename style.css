@@ -767,6 +767,98 @@ details,
   color: rgba(255,255,255,0.70);
 }
 
+/* ===============================
+   Map panel (SVG)
+================================ */
+.map-panel{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06); /* 요청: 흰색계열 반투명 배경 */
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.map-panel object{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tooltip */
+.map-tip{
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  min-width: 140px;
+  max-width: 260px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  reminder: 0;
+  background: rgba(7,9,20,0.92);
+  color: rgba(255,255,255,0.92);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  font-size: 13px;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.map-tip.is-show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===============================
+   Pins (in SVG)
+================================ */
+/* tier colors */
+:root{
+  --t0: #ff4d4d;   /* 🔴 Tier 0 */
+  --t1: #ff9f2e;   /* 🟠 Tier 1 */
+  --t2: #ffd84d;   /* 🟡 Tier 2 */
+  --t3: #67a8ff;   /* 🔵 Tier 3 */
+}
+
+.pin-dot{
+  stroke: rgba(255,255,255,0.20);
+  stroke-width: 1;
+}
+
+.pin-glow{
+  fill: none;
+  stroke-width: 2;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 10px rgba(120,180,255,0.35));
+  animation: pinPulse 1.7s ease-in-out infinite;
+}
+
+@keyframes pinPulse{
+  0%   { transform: scale(0.95); opacity: 0.35; }
+  50%  { transform: scale(1.10); opacity: 0.70; }
+  100% { transform: scale(0.95); opacity: 0.35; }
+}
+
+/* apply tier */
+.pin.t0 .pin-dot{ fill: var(--t0); }
+.pin.t0 .pin-glow{ stroke: var(--t0); }
+
+.pin.t1 .pin-dot{ fill: var(--t1); }
+.pin.t1 .pin-glow{ stroke: var(--t1); }
+
+.pin.t2 .pin-dot{ fill: var(--t2); }
+.pin.t2 .pin-glow{ stroke: var(--t2); }
+
+.pin.t3 .pin-dot{ fill: var(--t3); }
+.pin.t3 .pin-glow{ stroke: var(--t3); }
+
+/* hover affordance */
+.pin:hover .pin-dot{
+  stroke: rgba(255,255,255,0.45);
+  stroke-width: 1.2;
+}
+
 
 
 
