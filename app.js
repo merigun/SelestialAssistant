@@ -59,52 +59,6 @@ if (y) y.textContent = String(new Date().getFullYear());
   onScroll();
 })();
 
-// ===============================
-// Map pins (percent-based)
-// ===============================
-(function(){
-  const pinsRoot = document.getElementById("mapPins");
-  const mapWrap  = document.getElementById("mapWrap");
-  if(!pinsRoot || !mapWrap) return;
-
-  // x,y는 "퍼센트 좌표" (0~100). 화면 크기 바뀌어도 동일하게 맞음.
-  const SPOTS = [
-    { name: "Atacama Desert", x: 23.5, y: 73.0 },
-    { name: "Mauna Kea",      x: 16.5, y: 53.5 },
-    { name: "La Palma",       x: 44.0, y: 41.5 },
-    { name: "Namib Desert",   x: 55.0, y: 78.0 },
-    // 필요하면 계속 추가
-  ];
-
-  function renderPins(){
-    pinsRoot.innerHTML = "";
-    for(const s of SPOTS){
-      const pin = document.createElement("div");
-      pin.className = "pin";
-      pin.style.setProperty("--x", s.x + "%");
-      pin.style.setProperty("--y", s.y + "%");
-      pin.innerHTML = `<span class="tip">${s.name}</span>`;
-      pinsRoot.appendChild(pin);
-    }
-  }
-
-  renderPins();
-
-  // ===============================
-  // 좌표 찍기 모드(개발할 때만 사용)
-  // 지도 클릭하면 {x,y} 퍼센트가 콘솔에 찍힘
-  // ===============================
-  const DEBUG_PICK = true; // 다 찍었으면 false로 바꿔
-  if(DEBUG_PICK){
-    mapWrap.addEventListener("click", (e) => {
-      const rect = mapWrap.getBoundingClientRect();
-      const px = ( (e.clientX - rect.left) / rect.width ) * 100;
-      const py = ( (e.clientY - rect.top)  / rect.height) * 100;
-      console.log("PIN %:", { x: +px.toFixed(2), y: +py.toFixed(2) });
-    });
-  }
-})();
-
 // ===== Map pins (world.svg) =====
 (function () {
   const pinsLayer = document.getElementById("mapPins"); // 핀 꽂을 div
@@ -132,4 +86,5 @@ if (y) y.textContent = String(new Date().getFullYear());
     pinsLayer.appendChild(pin);
   });
 })();
+
 
