@@ -612,12 +612,15 @@ details,
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(7,9,20,0.55);
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  aspect-ratio: 2 / 1; 
 }
 
 .map-img{
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;   /* SVG/이미지가 찌그러지지 않게 */
+  display: block;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -658,3 +661,4 @@ details,
   0%   { transform: scale(0.2); opacity: 0.95; }
   100% { transform: scale(1.0); opacity: 0; }
 }
+
