@@ -690,3 +690,13 @@ details,
 .pin--ASIA{ width: 11px; height: 11px; box-shadow: 0 0 22px rgba(130,200,255,0.35); }
 .pin--KR { width: 12px; height: 12px; box-shadow: 0 0 26px rgba(255,255,255,0.25); }
 
+.map-wrap::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,0.08);
+  z-index:0;
+}
+.map-img{ position:relative; z-index:1; }
+.map-pins{ position:absolute; inset:0; z-index:2; }
+
