@@ -58,3 +58,49 @@ if (y) y.textContent = String(new Date().getFullYear());
 
   onScroll();
 })();
+
+// ===== Map tooltip for pins =====
+(function () {
+  const tip = document.getElementById("mapTip");
+  const pins = document.querySelectorAll(".pin");
+  if (!tip || !pins.length) return;
+
+  function showTip(el, clientX, clientY) {
+    const name = el.getAttribute("data-name") || "";
+    tip.textContent = name;
+    tip.classList.add("is-on");
+    tip.setAttribute("aria-hidden", "false");
+
+    const wrap = el.parentElement.getBoundingClientRect();
+    // 툴팁 위치: 커서 기준
+    const x = clientX - wrap.left + 12;
+    const y = clientY - wrap.top + 12;
+    tip.style.left = `${x}px`;
+    tip.style.top = `${y}px`;
+  }
+
+  function hideTip() {
+    tip.classList.remove("is-on");
+    tip.setAttribute("aria-hidden", "true");
+  }
+
+  pins.forEach(p => {
+    p.addEventListener("mouseenter", (e) => showTip(p, e.clientX, e.clientY));
+    p.addEventListener("mousemove", (e) => showTip(p, e.clientX, e.clientY));
+    p.addEventListener("mouseleave", hideTip);
+
+    // 모바일: 탭하면 보이게(한번 더 탭하면 닫기)
+    p.addEventListener("click", (e) => {
+      e.preventDefault();
+      const on = tip.classList.contains("is-on");
+      if (on) hideTip();
+      else showTip(p, e.clientX || 0, e.clientY || 0);
+    });
+  });
+
+  // 바깥 클릭하면 닫기(모바일)
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("pin")) hideTip();
+  });
+})();
+
