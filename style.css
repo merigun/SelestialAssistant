@@ -590,6 +590,7 @@ details,
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.06); /* 요청: 흰색계열 반투명 배경 */
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  z-index: 1;
 }
 
 .map-panel object{
@@ -620,6 +621,7 @@ details,
 .map-tip.is-show{
   opacity: 1;
   transform: translateY(0);
+  z-index: 3;
 }
 
 /* ===============================
@@ -670,6 +672,7 @@ details,
   stroke: rgba(255,255,255,0.45);
   stroke-width: 1.2;
 }
+
 
 
 
