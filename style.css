@@ -600,23 +600,32 @@ details,
   transform: scale(1.03);
 }
 
-/* ===== Map section ===== */
+/* ===============================
+   Map + glowing pins
+================================ */
 .map-wrap{
   position: relative;
-  margin-top: 14px;
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
   background: rgba(7,9,20,0.65);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
 }
 
 .map-img{
   width: 100%;
   height: auto;
   display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* pins */
+.map-pins{
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* 핀에 hover 필요하면 아래에서 pin만 pointer-events 켬 */
+}
+
 .pin{
   position: absolute;
   left: var(--x);
@@ -625,86 +634,63 @@ details,
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.45);
-  background: rgba(130,200,255,0.9);
+  background: rgba(130,200,255,0.95);
+  box-shadow:
+    0 0 18px rgba(130,200,255,0.55),
+    0 0 40px rgba(203,140,255,0.25);
+  pointer-events: auto; /* 핀만 hover/click 가능 */
   cursor: pointer;
-  padding: 0;
-}
-
-/* 반짝이는 효과: 두 겹 */
-.pin::before,
-.pin::after{
-  content:"";
-  position: absolute;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
 }
 
 .pin::before{
-  width: 10px;
-  height: 10px;
-  box-shadow: 0 0 18px rgba(130,200,255,0.8);
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border-radius: 999px;
+  border: 1px solid rgba(130,200,255,0.35);
+  opacity: 0.8;
+  animation: pinPulse 1.6s ease-out infinite;
 }
 
 .pin::after{
-  width: 10px;
-  height: 10px;
-  border: 1px solid rgba(130,200,255,0.75);
-  animation: pulse 1.8s ease-out infinite;
+  content:"";
+  position:absolute;
+  inset:-22px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(203,140,255,0.18), transparent 60%);
+  opacity: 0.9;
+  animation: pinGlow 2.2s ease-in-out infinite;
 }
 
-@keyframes pulse{
-  0%   { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
-  70%  { opacity: 0;   transform: translate(-50%, -50%) scale(4.2); }
-  100% { opacity: 0;   transform: translate(-50%, -50%) scale(4.2); }
+@keyframes pinPulse{
+  0%{ transform: scale(0.55); opacity: 0.85; }
+  100%{ transform: scale(1.35); opacity: 0; }
+}
+@keyframes pinGlow{
+  0%,100%{ transform: scale(0.9); opacity: 0.55; }
+  50%{ transform: scale(1.05); opacity: 0.85; }
 }
 
-/* tier styling */
-.pin.tier0{ background: rgba(255,120,140,0.95); }
-.pin.tier1{ background: rgba(255,190,90,0.95); }
-.pin.tier2{ background: rgba(255,235,120,0.95); }
-.pin.tier3{ background: rgba(120,200,255,0.95); }
-
-.legend{
-  margin-top: 12px;
-  display:flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  color: rgba(255,255,255,0.72);
-  font-size: 13px;
-  align-items:center;
-}
-.legend .dot{
-  width: 10px; height: 10px; border-radius: 999px; display:inline-block;
-  margin: 0 6px 0 14px;
-}
-.legend .t0{ background: rgba(255,120,140,0.95); margin-left:0; }
-.legend .t1{ background: rgba(255,190,90,0.95); }
-.legend .t2{ background: rgba(255,235,120,0.95); }
-.legend .t3{ background: rgba(120,200,255,0.95); }
-
-/* tooltip */
-.map-tip{
+/* 툴팁 */
+.pin .tip{
   position: absolute;
-  min-width: 160px;
-  max-width: 260px;
-  padding: 10px 12px;
+  left: 12px;
+  top: -8px;
+  transform: translateY(-100%);
+  white-space: nowrap;
+  padding: 6px 10px;
   border-radius: 12px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.9);
   background: rgba(7,9,20,0.92);
-  border: 1px solid rgba(255,255,255,0.14);
-  color: rgba(255,255,255,0.90);
-  font-size: 13px;
-  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity .12s ease, transform .12s ease;
-  z-index: 5;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
 }
-.map-tip.is-on{
+
+.pin:hover .tip{
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-106%);
 }
-
-
-
