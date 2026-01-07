@@ -105,3 +105,31 @@ if (y) y.textContent = String(new Date().getFullYear());
   }
 })();
 
+// ===== Map pins (world.svg) =====
+(function () {
+  const pinsLayer = document.getElementById("mapPins"); // 핀 꽂을 div
+  if (!pinsLayer) return;
+
+  // 퍼센트 좌표(0~100). world.svg에 맞춰 네가 조금씩 튜닝하면 됨.
+  // name은 나중에 tooltip/리스트 연결할 때 쓰기 좋음.
+  const SPOTS = [
+    { name: "Atacama", x: 28.3, y: 78.0 },
+    { name: "Mauna Kea", x: 17.5, y: 46.0 },
+    { name: "La Palma", x: 48.2, y: 44.0 },
+    { name: "Namib", x: 52.5, y: 77.0 },
+  ];
+
+  // 기존 핀 초기화
+  pinsLayer.innerHTML = "";
+
+  // 핀 생성
+  SPOTS.forEach(s => {
+    const pin = document.createElement("span");
+    pin.className = "pin";
+    pin.style.left = `${s.x}%`;
+    pin.style.top = `${s.y}%`;
+    pin.setAttribute("aria-label", s.name);
+    pinsLayer.appendChild(pin);
+  });
+})();
+
