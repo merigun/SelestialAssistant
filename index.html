@@ -101,32 +101,22 @@
     </section>
 
     <!---map-->
-    <section id="map" class="section">
+    <section id="spots" class="section section--alt">
       <div class="container">
-        <h2>Global Observation Network</h2>
-        <p class="lead">세계 관측 명당을 연결해, ‘장소의 격차’를 기술로 줄입니다.</p>
+        <h2>Night Sky Hotspots</h2>
+        <p class="lead">전 세계 천체관측 명당을 한눈에.</p>
     
-        <div class="map-wrap">
-          <img class="map-img" src="./img/map.jpg" alt="World map" />
+        <div class="map-wrap" id="mapWrap">
+          <img src="./img/map.jpg" alt="World map" class="map-img" />
     
-          <!-- 핀(점)들: data-x/y는 % 좌표 -->
-          <button class="pin tier0" style="--x: 24%; --y: 62%;" data-name="Atacama Desert (Chile)"></button>
-          <button class="pin tier0" style="--x: 14%; --y: 45%;" data-name="Mauna Kea (Hawaii)"></button>
-          <button class="pin tier1" style="--x: 52%; --y: 40%;" data-name="La Palma (Spain)"></button>
-          <button class="pin tier1" style="--x: 57%; --y: 62%;" data-name="Namib Desert (Namibia)"></button>
-    
-          <!-- 툴팁 -->
-          <div id="mapTip" class="map-tip" aria-hidden="true"></div>
+          <!-- 핀들은 JS로 자동 생성할 거라 여기 비워둠 -->
+          <div class="map-pins" id="mapPins"></div>
         </div>
     
-        <div class="legend">
-          <span class="dot t0"></span> Tier 0
-          <span class="dot t1"></span> Tier 1
-          <span class="dot t2"></span> Tier 2
-          <span class="dot t3"></span> Tier 3
-        </div>
+        <p class="tiny">Tip: 지도에서 마우스로 찍으면 좌표(%)를 콘솔에 출력하도록 만들 수 있음.</p>
       </div>
     </section>
+
 
 
 
