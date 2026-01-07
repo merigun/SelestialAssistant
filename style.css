@@ -653,6 +653,7 @@ details,
   width: 12px;
   height: 12px;
   border-radius: 999px;
+  z-index:3;
 
   /* 중심정렬: 점과 펄스를 동일 기준으로 */
   transform: translate(-50%, -50%);
@@ -766,5 +767,6 @@ details,
   font-size: 12px;
   color: rgba(255,255,255,0.70);
 }
+
 
 
