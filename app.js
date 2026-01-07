@@ -84,7 +84,6 @@ if (y) y.textContent = String(new Date().getFullYear());
     pin.style.top = `${s.y}%`;
     pin.setAttribute("aria-label", s.name);
     pinsLayer.appendChild(pin);
-    pin.title = `${s.name} (${tierLabel})`;
   });
 })();
 // ==============================
@@ -176,5 +175,6 @@ if (y) y.textContent = String(new Date().getFullYear());
   }
 
   renderPins(SPOTS);
+
 
 
