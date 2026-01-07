@@ -86,5 +86,3 @@ if (y) y.textContent = String(new Date().getFullYear());
     pinsLayer.appendChild(pin);
   });
 })();
-
-
