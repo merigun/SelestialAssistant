@@ -600,5 +600,111 @@ details,
   transform: scale(1.03);
 }
 
+/* ===== Map section ===== */
+.map-wrap{
+  position: relative;
+  margin-top: 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(7,9,20,0.65);
+}
+
+.map-img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* pins */
+.pin{
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.45);
+  background: rgba(130,200,255,0.9);
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 반짝이는 효과: 두 겹 */
+.pin::before,
+.pin::after{
+  content:"";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+
+.pin::before{
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 18px rgba(130,200,255,0.8);
+}
+
+.pin::after{
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(130,200,255,0.75);
+  animation: pulse 1.8s ease-out infinite;
+}
+
+@keyframes pulse{
+  0%   { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+  70%  { opacity: 0;   transform: translate(-50%, -50%) scale(4.2); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(4.2); }
+}
+
+/* tier styling */
+.pin.tier0{ background: rgba(255,120,140,0.95); }
+.pin.tier1{ background: rgba(255,190,90,0.95); }
+.pin.tier2{ background: rgba(255,235,120,0.95); }
+.pin.tier3{ background: rgba(120,200,255,0.95); }
+
+.legend{
+  margin-top: 12px;
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  align-items:center;
+}
+.legend .dot{
+  width: 10px; height: 10px; border-radius: 999px; display:inline-block;
+  margin: 0 6px 0 14px;
+}
+.legend .t0{ background: rgba(255,120,140,0.95); margin-left:0; }
+.legend .t1{ background: rgba(255,190,90,0.95); }
+.legend .t2{ background: rgba(255,235,120,0.95); }
+.legend .t3{ background: rgba(120,200,255,0.95); }
+
+/* tooltip */
+.map-tip{
+  position: absolute;
+  min-width: 160px;
+  max-width: 260px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(7,9,20,0.92);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.90);
+  font-size: 13px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .12s ease, transform .12s ease;
+  z-index: 5;
+}
+.map-tip.is-on{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
