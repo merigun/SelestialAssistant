@@ -84,6 +84,7 @@ if (y) y.textContent = String(new Date().getFullYear());
     pin.style.top = `${s.y}%`;
     pin.setAttribute("aria-label", s.name);
     pinsLayer.appendChild(pin);
+    pin.title = `${s.name} (${tierLabel})`;
   });
 })();
 // ==============================
@@ -176,12 +177,4 @@ if (y) y.textContent = String(new Date().getFullYear());
 
   renderPins(SPOTS);
 
-  // (선택) 지도 클릭하면 %좌표 확인: 튜닝용
-  wrap.addEventListener("click", (e) => {
-    const r = wrap.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width) * 100;
-    const y = ((e.clientY - r.top) / r.height) * 100;
-    console.log(`clicked => x:${x.toFixed(1)} y:${y.toFixed(1)}`);
-  });
-})();
 
