@@ -694,3 +694,62 @@ details,
   opacity: 1;
   transform: translateY(-106%);
 }
+/* ===============================
+   Map (SVG) + Pins
+================================ */
+.map-wrap{
+  position: relative;
+  width: min(1100px, 100%);
+  margin: 18px auto 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(7,9,20,0.55);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+.map-img{
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* 핀 레이어 */
+.map-pins{
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* 핀 클릭 필요 없으면 이대로 */
+}
+
+/* 핀(점+펄스) */
+.pin{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  background: rgba(130,200,255,0.95);
+  box-shadow:
+    0 0 14px rgba(130,200,255,0.65),
+    0 0 30px rgba(203,140,255,0.35);
+}
+
+.pin::after{
+  content:"";
+  position: absolute;
+  inset: -14px;
+  border-radius: 999px;
+  border: 1px solid rgba(130,200,255,0.55);
+  opacity: 0.9;
+  animation: pinPulse 1.6s ease-out infinite;
+}
+
+@keyframes pinPulse{
+  0%   { transform: scale(0.2); opacity: 0.95; }
+  100% { transform: scale(1.0); opacity: 0; }
+}
+
