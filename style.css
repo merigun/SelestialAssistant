@@ -495,7 +495,7 @@ details,
   gap: 12px;
 }
 .shot{
-  margin: 0.5;
+  margin: 0.5rem;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.10);
@@ -694,6 +694,7 @@ details,
   stroke: rgba(255,255,255,0.45);
   stroke-width: 1.2;
 }
+
 
 
 
