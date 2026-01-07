@@ -10,7 +10,7 @@ if (navToggle && navMobile) {
   });
 
   // close menu when clicking a link
-  navMobile.querySelectorAll("a").forEach(a => {
+  navMobile.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", () => {
       navToggle.setAttribute("aria-expanded", "false");
       navMobile.setAttribute("aria-hidden", "true");
@@ -25,28 +25,27 @@ if (y) y.textContent = String(new Date().getFullYear());
 // ===== Scroll spy: highlight current section in nav (desktop + mobile) =====
 (function () {
   const sections = Array.from(document.querySelectorAll("main section[id]"));
-  const navLinks = Array.from(document.querySelectorAll('[data-spy]'));
+  const navLinks = Array.from(document.querySelectorAll("[data-spy]"));
 
   if (!sections.length || !navLinks.length) return;
 
   function setActive(id) {
-    navLinks.forEach(a => {
+    navLinks.forEach((a) => {
       const href = a.getAttribute("href") || "";
       const active = href.endsWith(`#${id}`) || href.includes(`#${id}`);
       a.classList.toggle("is-active", active);
     });
   }
 
-  // 초기 active (hash 우선)
   if (location.hash) setActive(location.hash.replace("#", ""));
   else setActive(sections[0].id);
 
   const onScroll = () => {
-    const y = window.scrollY + 120; // nav 높이 보정
+    const yy = window.scrollY + 120;
     let current = sections[0].id;
 
     for (const s of sections) {
-      if (s.offsetTop <= y) current = s.id;
+      if (s.offsetTop <= yy) current = s.id;
     }
     setActive(current);
   };
@@ -59,43 +58,17 @@ if (y) y.textContent = String(new Date().getFullYear());
   onScroll();
 })();
 
-// ===== Map pins (world.svg) =====
-(function () {
-  const pinsLayer = document.getElementById("mapPins"); // 핀 꽂을 div
-  if (!pinsLayer) return;
-
-  // 퍼센트 좌표(0~100). world.svg에 맞춰 네가 조금씩 튜닝하면 됨.
-  // name은 나중에 tooltip/리스트 연결할 때 쓰기 좋음.
-  const SPOTS = [
-    { name: "Atacama", x: 28.3, y: 78.0 },
-    { name: "Mauna Kea", x: 17.5, y: 46.0 },
-    { name: "La Palma", x: 48.2, y: 44.0 },
-    { name: "Namib", x: 52.5, y: 77.0 },
-  ];
-
-  // 기존 핀 초기화
-  pinsLayer.innerHTML = "";
-
-  // 핀 생성
-  SPOTS.forEach(s => {
-    const pin = document.createElement("span");
-    pin.className = "pin";
-    pin.style.left = `${s.x}%`;
-    pin.style.top = `${s.y}%`;
-    pin.setAttribute("aria-label", s.name);
-    pinsLayer.appendChild(pin);
-  });
-})();
 // ==============================
 // Star Spots Map (Tier pins)
 // lat/lon -> x/y% (equirectangular)
+// + Tooltip (hover/click, mobile friendly)
 // ==============================
 (function () {
   const wrap = document.getElementById("mapWrap");
   const pinsEl = document.getElementById("mapPins");
+  const tipEl = document.getElementById("mapTooltip"); // 없으면 자동 생성
   if (!wrap || !pinsEl) return;
 
-  // Tier style key
   const TIERS = {
     TOP: { label: "TOP TIER" },
     A: { label: "1군" },
@@ -106,8 +79,6 @@ if (y) y.textContent = String(new Date().getFullYear());
   };
 
   // lat: +N / -S, lon: +E / -W
-  // ※ 좌표는 "대표 지점" 기준의 대략값(발표용/시각화용)
-  //   필요하면 너가 원하는 정확 포인트로 later refine 가능.
   const SPOTS = [
     // ===== TOP TIER =====
     { name: "Atacama Desert (Chile)", tier: "TOP", lat: -24.6, lon: -69.2 },
@@ -122,21 +93,20 @@ if (y) y.textContent = String(new Date().getFullYear());
     { name: "Kalahari Desert (Botswana/Namibia)", tier: "A", lat: -22.0, lon: 21.0 },
     { name: "Lapland (Finland)", tier: "A", lat: 67.0, lon: 26.0 },
 
-    // ===== 2군 (관측+관광) =====
+    // ===== 2군 =====
     { name: "Uluru (Australia)", tier: "B", lat: -25.34, lon: 131.03 },
     { name: "Joshua Tree NP (USA)", tier: "B", lat: 33.87, lon: -115.90 },
-    // 너가 예전에 적어둔 '몬우누아 케아'는 Mauna Kea로 통일하는게 맞음(중복 방지)
     { name: "Gobi Desert (Mongolia/China)", tier: "B", lat: 42.5, lon: 103.5 },
     { name: "Wadi Rum (Jordan)", tier: "B", lat: 29.57, lon: 35.42 },
 
-    // ===== 3군 (접근성 우수) =====
+    // ===== 3군 =====
     { name: "Scottish Highlands (UK)", tier: "C", lat: 57.2, lon: -5.2 },
     { name: "Alps (Switzerland)", tier: "C", lat: 46.6, lon: 8.0 },
     { name: "Pyrenees (France/Spain)", tier: "C", lat: 42.7, lon: 0.5 },
     { name: "Sicily inland (Italy)", tier: "C", lat: 37.6, lon: 14.0 },
     { name: "Tasmania (Australia)", tier: "C", lat: -42.0, lon: 147.0 },
 
-    // ===== Asia (발표 공감용) =====
+    // ===== Asia =====
     { name: "Ali, Tibet (China)", tier: "ASIA", lat: 32.5, lon: 80.1 },
     { name: "Ladakh (India)", tier: "ASIA", lat: 34.16, lon: 77.58 },
     { name: "Hokkaido (Japan)", tier: "ASIA", lat: 43.06, lon: 141.35 },
@@ -156,6 +126,37 @@ if (y) y.textContent = String(new Date().getFullYear());
     return { x, y };
   }
 
+  // Tooltip element ensure
+  let tooltip = document.getElementById("mapTooltip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.id = "mapTooltip";
+    tooltip.className = "map-tooltip";
+    wrap.appendChild(tooltip);
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove("is-show");
+  }
+
+  function showTooltip(pinEl, spot) {
+    // 위치: 핀 근처로 (mapWrap 기준)
+    const pinRect = pinEl.getBoundingClientRect();
+    const wrapRect = wrap.getBoundingClientRect();
+
+    const left = pinRect.left - wrapRect.left;
+    const top = pinRect.top - wrapRect.top;
+
+    tooltip.innerHTML = `
+      <div class="map-tooltip__title">${spot.name}</div>
+      <div class="map-tooltip__sub">${TIERS[spot.tier]?.label || spot.tier}</div>
+    `;
+
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.classList.add("is-show");
+  }
+
   function renderPins(list) {
     pinsEl.innerHTML = "";
 
@@ -168,13 +169,29 @@ if (y) y.textContent = String(new Date().getFullYear());
       pin.style.left = `${x}%`;
       pin.style.top = `${y}%`;
       pin.setAttribute("aria-label", `${s.name} (${TIERS[s.tier]?.label || s.tier})`);
-      pin.title = `${s.name}\n${TIERS[s.tier]?.label || s.tier}`;
+
+      // Desktop: hover
+      pin.addEventListener("mouseenter", () => showTooltip(pin, s));
+      pin.addEventListener("mouseleave", () => hideTooltip());
+
+      // Mobile/Touch: tap
+      pin.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = tooltip.classList.contains("is-show");
+        if (isOpen) hideTooltip();
+        else showTooltip(pin, s);
+      });
 
       pinsEl.appendChild(pin);
     });
   }
 
+  // close on outside click / scroll
+  document.addEventListener("click", () => hideTooltip());
+  window.addEventListener("scroll", () => hideTooltip(), { passive: true });
+
   renderPins(SPOTS);
 
-
-
+  // (옵션) 콘솔에 몇 개 찍혔는지
+  console.log(`[Map] Pins rendered: ${SPOTS.length}`);
+})();
