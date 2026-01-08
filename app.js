@@ -190,17 +190,16 @@ if (y) y.textContent = String(new Date().getFullYear());
 
     // world.svg에서 geoViewBox 읽기 (lon/lat bounds)
     const geo = svg.getAttribute("geoViewBox");
-    const wAttr = svg.getAttribute("width");
-    const hAttr = svg.getAttribute("height");
-
-    if(!geo || !wAttr || !hAttr){
-      console.warn("world.svg needs geoViewBox/width/height attributes.");
+    const vb = (svg.getAttribute("viewBox") || "").split(/\s+/).map(Number);
+    
+    if(!geo || vb.length !== 4){
+      console.warn("world.svg needs geoViewBox + viewBox.");
       return;
     }
+    
+    const W = vb[2];
+    const H = vb[3];
 
-    const [minLon, minLat, maxLon, maxLat] = geo.split(/\s+/).map(Number);
-    const W = parseFloat(wAttr);
-    const H = parseFloat(hAttr);
 
     // 핀을 얹을 레이어
     let layer = svgDoc.getElementById("pinLayer");
@@ -282,6 +281,7 @@ if (y) y.textContent = String(new Date().getFullYear());
     svg.addEventListener("click", hideTip);
   });
 })();
+
 
 
 
