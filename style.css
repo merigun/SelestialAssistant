@@ -678,6 +678,22 @@ details,
   stroke-width: 1.2;
 }
 
+/* Mobile: Tier legend 2-column grid */
+@media (max-width: 520px){
+  #spots .list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+    padding-left: 0;     /* 기존 ul 들여쓰기 제거 */
+    list-style: none;
+  }
+  #spots .list li{
+    margin: 0;
+    font-size: 12px;
+    white-space: nowrap; /* 한 줄 유지 */
+  }
+}
+
 
 
 
