@@ -123,8 +123,7 @@ if (y) y.textContent = String(new Date().getFullYear());
     const svgDoc = obj.contentDocument;
     if(!svgDoc) return;
 
-    const svg = svgDoc.querySelector("svg");
-    ensureSvgPinStyles(svgDoc);
+    
     // ✅ SVG 내부에 핀 스타일 주입 (style.css는 <object> 내부 SVG엔 적용 안 됨)
     function ensureSvgPinStyles(svgDoc) {
       if (svgDoc.getElementById("pinStyles")) return;
@@ -180,7 +179,8 @@ if (y) y.textContent = String(new Date().getFullYear());
           stroke-width: 1.2;
         }
       `;
-    
+    const svg = svgDoc.querySelector("svg");
+    ensureSvgPinStyles(svgDoc);
       // svg 최상단에 style 넣기
       const svg = svgDoc.querySelector("svg");
       svg.insertBefore(style, svg.firstChild);
@@ -282,6 +282,7 @@ if (y) y.textContent = String(new Date().getFullYear());
     svg.addEventListener("click", hideTip);
   });
 })();
+
 
 
 
