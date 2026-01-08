@@ -166,6 +166,10 @@ if (y) y.textContent = String(new Date().getFullYear());
     const [minLon, minLat, maxLon, maxLat] = geo.trim().split(/\s+/).map(Number);
     const W = vb[2];
     const H = vb[3];
+    // 핀 크기: SVG 폭(W)에 비례하도록 자동 스케일
+    // w_map.svg가 360폭이면 dot≈2.5~3, glow≈8~10 정도가 적당
+    const DOT_R  = Math.max(2.4, W * 0.0075);  // 360*0.0075=2.7
+    const GLOW_R = Math.max(7.5, W * 0.025);   // 360*0.025=9
 
     let layer = svgDoc.getElementById("pinLayer");
     if (!layer) {
@@ -194,13 +198,13 @@ if (y) y.textContent = String(new Date().getFullYear());
       glow.setAttribute("class", "pin-glow");
       glow.setAttribute("cx", x);
       glow.setAttribute("cy", y);
-      glow.setAttribute("r", 18);
+      glow.setAttribute("r", GLOW_R);
 
       const dot = svgDoc.createElementNS("http://www.w3.org/2000/svg", "circle");
       dot.setAttribute("class", "pin-dot");
       dot.setAttribute("cx", x);
       dot.setAttribute("cy", y);
-      dot.setAttribute("r", 6);
+      dot.setAttribute("r", DOT_R);
 
       const title = svgDoc.createElementNS("http://www.w3.org/2000/svg", "title");
       title.textContent = `${s.name} — ${s.note || ""}`;
@@ -236,6 +240,7 @@ if (y) y.textContent = String(new Date().getFullYear());
   document.addEventListener("click", hideTip);
   window.addEventListener("scroll", hideTip, { passive: true });
 })();
+
 
 
 
