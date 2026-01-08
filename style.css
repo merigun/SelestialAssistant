@@ -634,7 +634,12 @@ details,
   --t2: #ffd84d;   /* 🟡 Tier 2 */
   --t3: #67a8ff;   /* 🔵 Tier 3 */
 }
-
+.tier-line{
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.6;
+  text-align: center;
+}
 .pin-dot{
   stroke: rgba(255,255,255,0.20);
   stroke-width: 1;
@@ -672,6 +677,7 @@ details,
   stroke: rgba(255,255,255,0.45);
   stroke-width: 1.2;
 }
+
 
 
 
