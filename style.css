@@ -694,6 +694,22 @@ details,
   }
 }
 
+/* Mobile: Tier legend refined */
+@media (max-width: 520px){
+  .tier-line{
+    font-size: 0.75rem;        /* 전체 글씨 축소 */
+    line-height: 1.5;
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto 12px;
+  }
+
+  .tier-line span{
+    display: inline-block;
+    white-space: nowrap;
+  }
+}
+
 
 
 
