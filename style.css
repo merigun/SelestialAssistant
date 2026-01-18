@@ -9,6 +9,13 @@
   --radius: 18px;
   --max: 1120px;
 }
+/* 큰 화면에서는 컨텐츠 폭을 더 넓게 */
+@media (min-width: 1400px){
+  :root{ --max: 1320px; }
+}
+@media (min-width: 1700px){
+  :root{ --max: 1480px; }
+}
 
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
@@ -708,6 +715,7 @@ details,
     white-space: nowrap;
   }
 }
+
 
 
 
