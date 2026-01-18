@@ -9,13 +9,6 @@
   --radius: 18px;
   --max: 1120px;
 }
-/* 큰 화면에서는 컨텐츠 폭을 더 넓게 */
-@media (min-width: 1400px){
-  :root{ --max: 1320px; }
-}
-@media (min-width: 1700px){
-  :root{ --max: 1480px; }
-}
 
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
@@ -30,7 +23,7 @@ a{ color: inherit; text-decoration:none; }
 a:hover{ opacity:0.92; }
 
 .container{
-  width: min(var(--max), calc(100% - 44px));
+  width: min(92vw, 1400px);
   margin: 0 auto;
 }
 
@@ -91,6 +84,8 @@ h3{ font-size: 18px; }
 .bg-wrap {
   position: fixed;
   inset: 0;
+  width:100vw;
+  height:100vh;
   z-index: -1;
   overflow: hidden;
   display: flex;
@@ -99,18 +94,15 @@ h3{ font-size: 18px; }
   transform: none !important;
 }
 
-.bg-video {
-  position: relative;
-  width: auto;
-  height: auto;
-
-  /* 🔥 핵심 */
-  max-width: 100vw;
-  max-height: 100vh;
-
-  object-fit: contain;   /* 비율 보존 */
-  transform: none;       /* 절대 scale 금지 */
+.bg-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  transform: scale(1.04); /* '적당히' 확대: 과하지 않게 */
+  will-change: transform;
 }
+
 
 .bg-overlay{
   position: absolute;
@@ -715,6 +707,7 @@ details,
     white-space: nowrap;
   }
 }
+
 
 
 
