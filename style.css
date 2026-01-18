@@ -89,6 +89,7 @@ h3{ font-size: 18px; }
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: none !important;
 }
 
 .bg-video {
@@ -429,11 +430,9 @@ details p{ margin: 10px 0 0; color: rgba(255,255,255,0.74); }
 @keyframes pageFadeIn{
   from{
     opacity: 0;
-    transform: translateY(6px);
   }
   to{
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -717,6 +716,7 @@ details,
     white-space: nowrap;
   }
 }
+
 
 
 
