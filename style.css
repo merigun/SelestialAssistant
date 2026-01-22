@@ -963,6 +963,45 @@ details,
   .star-grid{ grid-template-columns: 1fr; }
 }
 
+.glow-text{
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  /* 그라데이션 텍스트 */
+  background: linear-gradient(
+    90deg,
+    #cfe9ff,
+    #ffffff,
+    #cfe9ff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 소프트 글로우 */
+  text-shadow:
+    0 0 6px rgba(170,220,255,0.45),
+    0 0 14px rgba(120,190,255,0.35),
+    0 0 30px rgba(80,140,255,0.25);
+
+  animation: glow-breath 3.6s ease-in-out infinite;
+}
+
+@keyframes glow-breath{
+  0%, 100%{
+    text-shadow:
+      0 0 6px rgba(170,220,255,0.35),
+      0 0 14px rgba(120,190,255,0.25),
+      0 0 28px rgba(80,140,255,0.15);
+  }
+  50%{
+    text-shadow:
+      0 0 10px rgba(190,235,255,0.65),
+      0 0 22px rgba(140,210,255,0.45),
+      0 0 44px rgba(100,170,255,0.30);
+  }
+}
+
 
 
 
