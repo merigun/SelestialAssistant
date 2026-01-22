@@ -241,6 +241,47 @@ if (y) y.textContent = String(new Date().getFullYear());
   window.addEventListener("scroll", hideTip, { passive: true });
 })();
 
+// ===============================
+// My Star: dialog modals
+// ===============================
+(function () {
+  const openers = Array.from(document.querySelectorAll("[data-open]"));
+  if (!openers.length) return;
+
+  function openDialog(id) {
+    const dlg = document.getElementById(id);
+    if (!dlg) return;
+
+    // native <dialog>
+    if (typeof dlg.showModal === "function") {
+      dlg.showModal();
+
+      // close when clicking backdrop area
+      dlg.addEventListener("click", (e) => {
+        const rect = dlg.getBoundingClientRect();
+        const inDialog =
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom;
+        if (!inDialog) dlg.close();
+      }, { once: true });
+
+      return;
+    }
+
+    // fallback (rare): just toggle class
+    dlg.classList.add("is-open");
+  }
+
+  openers.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-open");
+      if (id) openDialog(id);
+    });
+  });
+})();
+
 
 
 
